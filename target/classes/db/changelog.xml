@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+
+    <changeSet id="me/1.0/17-02-2023/1" author="me" logicalFilePath="set-1.xml">
+        <sql>
+            <![CDATA[
+            CREATE SCHEMA IF NOT EXISTS sad;
+            ]]>
+        </sql>
+    </changeSet>
+
+    <changeSet id="me/1.0/17-02-2023/2" author="me" logicalFilePath="set-1.xml">
+        <sql>
+            <![CDATA[
+            CREATE TABLE sad.parts
+            (
+                id                   uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+                entity_id            uuid DEFAULT gen_random_uuid(),
+                name                 text,
+                part_number          text,
+                note                 text,
+                datetime_of_creation timestamp,
+                datetime_of_delete   timestamp
+            );
+            ]]>
+        </sql>
+    </changeSet>
+
+    <changeSet id="me/1.0/17-05-2023/2" author="me" logicalFilePath="set-1.xml">
+        <sql>
+            <![CDATA[
+            CREATE TABLE sad.suppliers
+            (
+                id                   uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+                entity_id            uuid DEFAULT gen_random_uuid(),
+                name                 text,
+                address              text,
+                phone                text,
+                datetime_of_creation timestamp,
+                datetime_of_delete   timestamp
+            );
+            ]]>
+        </sql>
+    </changeSet>
+
+    <changeSet id="me/1.0/18-05-2023/2" author="me" logicalFilePath="set-1.xml">
+        <sql>
+            <![CDATA[
+            CREATE TABLE sad.supplies
+            (
+                id                   uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+                entity_id            uuid DEFAULT gen_random_uuid(),
+                amount               bigint,
+                date                 timestamp,
+                supplied_parts       uuid,
+                datetime_of_creation timestamp,
+                datetime_of_delete   timestamp
+            );
+            ]]>
+        </sql>
+    </changeSet>
+
+    <changeSet id="me /1.0/19-05-2023/2" author="me" logicalFilePath="set-1.xml">
+        <sql>
+            <![CDATA[
+            CREATE TABLE sad.supplied_parts
+            (
+                id                   uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+                entity_id            uuid DEFAULT gen_random_uuid(),
+                part                 uuid,
+                date                 timestamp,
+                cost                 bigint,
+                supplier             uuid,
+                datetime_of_creation timestamp,
+                datetime_of_delete   timestamp
+            );
+            ]]>
+        </sql>
+    </changeSet>
+
+    <changeSet id="me/1.0/01-04-2023/1" author="ivan_sych" logicalFilePath="set-1.xml">
+        <sql>
+            <![CDATA[
+            CREATE TABLE sad.users(
+                id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+                entity_id uuid DEFAULT gen_random_uuid(),
+                login text,
+                password text,
+                is_admin boolean
+            );
+            ]]>
+        </sql>
+    </changeSet>
+
+    <changeSet id="me/1.0/22-04-2023/2" author="me" logicalFilePath="set-1.xml">
+        <sql>
+        <![CDATA[
+            insert into sad.users(login, password, is_admin) values('admin', '$2a$12$lG6/fYgjoPVbP5wxEkbkeOUR76NLsBaOtFIcJw3Q4uzwEn218t0Ye', true);
+        ]]>
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
