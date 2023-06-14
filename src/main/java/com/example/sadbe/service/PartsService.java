@@ -30,7 +30,7 @@ public class PartsService {
 
     public void createPart(PartDto partDto) {
         Parts part = getPartPojoFromDto(partDto);
-        partsDao.insert(part);
+        partsRepository.insert(part);
     }
 
     public Parts getOne(UUID entityId) throws NotFoundException {
@@ -48,8 +48,6 @@ public class PartsService {
             String search
     ) {
         SortField<?> sortField = switch (partsSortEnum) {
-            case ID -> PARTS.ID.sort(sortOrder);
-            case ENTITY_ID -> PARTS.ENTITY_ID.sort(sortOrder);
             case NAME -> PARTS.NAME.sort(sortOrder);
             case PART_NUMBER -> PARTS.PART_NUMBER.sort(sortOrder);
             case NOTE -> PARTS.NOTE.sort(sortOrder);
@@ -113,7 +111,7 @@ public class PartsService {
         if (Objects.isNull(part.getNote())) {
             part.setNote(actual.getNote());
         }
-        partsDao.insert(part);
+        partsRepository.insert(part);
         return part;
     }
 

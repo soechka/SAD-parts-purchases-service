@@ -32,7 +32,7 @@ public class SuppliesRestController {
 
     @GetMapping
     public ResponseList<Supplies> list(
-            @RequestParam(value = "sortBy", defaultValue = "ENTITY_ID")SuppliesSortEnum suppliesSortEnum,
+            @RequestParam(value = "sortBy", defaultValue = "DATE")SuppliesSortEnum suppliesSortEnum,
             @RequestParam(value = "sortOrder", defaultValue = "ASC")SortOrder sortOrder,
             @RequestParam(value = "page", defaultValue = "1")Integer page,
             @RequestParam(value = "pageSize", defaultValue = "5")Integer pageSize,

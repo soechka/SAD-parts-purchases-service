@@ -30,7 +30,6 @@ com/example/sadbe/exception/StudyExceptionHandler.class
 com/example/sadbe/repository/SuppliesRepository.class
 com/example/sadbe/service/SuppliersService.class
 com/example/sadbe/service/PartsService.class
-com/example/sadbe/controller/SupplierRestController.class
 com/example/sadbe/Tables.class
 com/example/sadbe/tables/daos/SuppliersDao.class
 com/example/sadbe/config/SecurityConfig.class
@@ -53,6 +52,7 @@ com/example/sadbe/tables/pojos/Suppliers.class
 com/example/sadbe/tables/pojos/Parts.class
 com/example/sadbe/tables/Suppliers.class
 com/example/sadbe/sort/SuppliersSortEnum.class
+com/example/sadbe/controller/SuppliersRestController.class
 com/example/sadbe/tables/daos/PartsDao.class
 com/example/sadbe/tables/pojos/Users.class
 com/example/sadbe/service/PartsService$1.class

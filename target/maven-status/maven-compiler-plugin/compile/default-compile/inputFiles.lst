@@ -2,6 +2,7 @@
 /Users/soe/Projects/romash-SAD/src/main/java/com/example/sadbe/dto/SupplierDto.java
 /Users/soe/Projects/romash-SAD/target/generated-sources/jooq/com/example/sadbe/tables/Supplies.java
 /Users/soe/Projects/romash-SAD/target/generated-sources/jooq/com/example/sadbe/tables/records/PartsRecord.java
+/Users/soe/Projects/romash-SAD/src/main/java/com/example/sadbe/controller/SuppliersRestController.java
 /Users/soe/Projects/romash-SAD/src/main/java/com/example/sadbe/service/PartsService.java
 /Users/soe/Projects/romash-SAD/src/main/java/com/example/sadbe/sort/SuppliersSortEnum.java
 /Users/soe/Projects/romash-SAD/target/generated-sources/jooq/com/example/sadbe/tables/pojos/Parts.java
@@ -9,7 +10,6 @@
 /Users/soe/Projects/romash-SAD/src/main/java/com/example/sadbe/controller/UserRestController.java
 /Users/soe/Projects/romash-SAD/src/main/java/com/example/sadbe/service/SuppliedPartsService.java
 /Users/soe/Projects/romash-SAD/target/generated-sources/jooq/com/example/sadbe/tables/Suppliers.java
-/Users/soe/Projects/romash-SAD/src/main/java/com/example/sadbe/controller/SupplierRestController.java
 /Users/soe/Projects/romash-SAD/src/main/java/com/example/sadbe/sort/PartsSortEnum.java
 /Users/soe/Projects/romash-SAD/src/main/java/com/example/sadbe/controller/SuppliesRestController.java
 /Users/soe/Projects/romash-SAD/target/generated-sources/jooq/com/example/sadbe/tables/SuppliedParts.java

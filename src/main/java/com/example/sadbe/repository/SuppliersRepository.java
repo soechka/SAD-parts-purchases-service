@@ -1,5 +1,6 @@
 package com.example.sadbe.repository;
 
+import com.example.sadbe.tables.pojos.Parts;
 import com.example.sadbe.tables.pojos.Suppliers;
 import lombok.AllArgsConstructor;
 import org.jooq.Condition;
@@ -12,8 +13,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.example.sadbe.Tables.SUPPLIED_PARTS;
-import static com.example.sadbe.Tables.SUPPLIERS;
+import static com.example.sadbe.Tables.*;
+import static com.example.sadbe.Tables.PARTS;
 
 @Repository
 @AllArgsConstructor
@@ -67,5 +68,23 @@ public class SuppliersRepository {
                 .from(SUPPLIERS)
                 .where(condition)
                 .fetchOneInto(Long.class);
+    }
+
+    public void insert(Suppliers supplier) {
+        dslContext
+                .insertInto(SUPPLIERS)
+                .columns(
+                        SUPPLIERS.NAME,
+                        SUPPLIERS.ADDRESS,
+                        SUPPLIERS.PHONE,
+                        SUPPLIERS.DATETIME_OF_CREATION,
+                        SUPPLIERS.DATETIME_OF_DELETE)
+                .values(
+                        supplier.getName(),
+                        supplier.getAddress(),
+                        supplier.getPhone(),
+                        supplier.getDatetimeOfCreation(),
+                        supplier.getDatetimeOfDelete()
+                ).execute();
     }
 }

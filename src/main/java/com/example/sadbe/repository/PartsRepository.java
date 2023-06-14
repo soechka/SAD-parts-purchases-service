@@ -67,4 +67,22 @@ public class PartsRepository {
                 .where(condition)
                 .fetchOneInto(Long.class);
     }
+
+    public void insert(Parts part) {
+        dslContext
+                .insertInto(PARTS)
+                .columns(
+                        PARTS.NAME,
+                        PARTS.PART_NUMBER,
+                        PARTS.NOTE,
+                        PARTS.DATETIME_OF_CREATION,
+                        PARTS.DATETIME_OF_DELETE)
+                .values(
+                        part.getName(),
+                        part.getPartNumber(),
+                        part.getNote(),
+                        part.getDatetimeOfCreation(),
+                        part.getDatetimeOfDelete()
+                ).execute();
+    }
 }

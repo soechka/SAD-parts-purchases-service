@@ -1,5 +1,6 @@
 package com.example.sadbe.repository;
 
+import com.example.sadbe.tables.pojos.Parts;
 import com.example.sadbe.tables.pojos.SuppliedParts;
 import lombok.AllArgsConstructor;
 import org.jooq.Condition;
@@ -12,8 +13,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.example.sadbe.Tables.SUPPLIED_PARTS;
-import static com.example.sadbe.Tables.SUPPLIERS;
+import static com.example.sadbe.Tables.*;
+import static com.example.sadbe.Tables.PARTS;
 
 @Repository
 @AllArgsConstructor
@@ -67,5 +68,25 @@ public class SuppliedPartsRepository {
                 .from(SUPPLIED_PARTS)
                 .where(condition)
                 .fetchOneInto(Long.class);
+    }
+
+    public void insert(SuppliedParts supPart) {
+        dslContext
+                .insertInto(SUPPLIED_PARTS)
+                .columns(
+                        SUPPLIED_PARTS.PART,
+                        SUPPLIED_PARTS.DATE,
+                        SUPPLIED_PARTS.COST,
+                        SUPPLIED_PARTS.SUPPLIER,
+                        SUPPLIED_PARTS.DATETIME_OF_CREATION,
+                        SUPPLIED_PARTS.DATETIME_OF_DELETE)
+                .values(
+                        supPart.getPart(),
+                        supPart.getDate(),
+                        supPart.getCost(),
+                        supPart.getSupplier(),
+                        supPart.getDatetimeOfCreation(),
+                        supPart.getDatetimeOfDelete()
+                ).execute();
     }
 }

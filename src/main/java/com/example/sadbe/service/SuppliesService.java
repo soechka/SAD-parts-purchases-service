@@ -34,7 +34,7 @@ public class SuppliesService {
     public void createSupply(SupplyDto supplyDto) {
         validate(supplyDto);
         Supplies supply = getSupplyPojoFromDto(supplyDto);
-        suppliesDao.insert(supply);
+        suppliesRepository.insert(supply);
     }
 
     public Supplies getOne(UUID entityId) throws NotFoundException {
@@ -70,7 +70,6 @@ public class SuppliesService {
             String search
     ) {
         SortField<?> sortField = switch (suppliesSortEnum) {
-            case ENTITY_ID -> SUPPLIES.ENTITY_ID.sort(sortOrder);
             case AMOUNT -> SUPPLIES.AMOUNT.sort(sortOrder);
             case DATE -> SUPPLIES.DATE.sort(sortOrder);
             case SUPPLIED_PART -> SUPPLIES.SUPPLIED_PARTS.sort(sortOrder);
@@ -125,7 +124,7 @@ public class SuppliesService {
         if (Objects.isNull(supply.getSuppliedParts())) {
             supply.setSuppliedParts(actual.getSuppliedParts());
         }
-        suppliesDao.insert(supply);
+        suppliesRepository.insert(supply);
         return supply;
     }
 

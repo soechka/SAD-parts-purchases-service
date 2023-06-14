@@ -16,7 +16,7 @@ import java.util.UUID;
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "/suppliers")
-public class SupplierRestController {
+public class SuppliersRestController {
 
     private final SuppliersService suppliersService;
 
@@ -31,7 +31,7 @@ public class SupplierRestController {
 
     @GetMapping
     public ResponseList<Suppliers> list(
-            @RequestParam(value = "sortBy", defaultValue = "ENTITY_ID")SuppliersSortEnum suppliersSortEnum,
+            @RequestParam(value = "sortBy", defaultValue = "NAME")SuppliersSortEnum suppliersSortEnum,
             @RequestParam(value = "sortOrder", defaultValue = "ASC")SortOrder sortOrder,
             @RequestParam(value = "page", defaultValue = "1")Integer page,
             @RequestParam(value = "pageSize", defaultValue = "5")Integer pageSize,

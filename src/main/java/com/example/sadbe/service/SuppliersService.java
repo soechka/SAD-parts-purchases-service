@@ -6,7 +6,6 @@ import com.example.sadbe.exception.NotFoundException;
 import com.example.sadbe.repository.SuppliersRepository;
 import com.example.sadbe.sort.SuppliersSortEnum;
 import com.example.sadbe.tables.daos.SuppliersDao;
-import com.example.sadbe.tables.pojos.Parts;
 import com.example.sadbe.tables.pojos.Suppliers;
 import lombok.AllArgsConstructor;
 import org.jooq.Condition;
@@ -18,10 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-import java.util.ResourceBundle;
 import java.util.UUID;
 
-import static com.example.sadbe.Tables.PARTS;
 import static com.example.sadbe.Tables.SUPPLIERS;
 
 @Service
@@ -33,7 +30,7 @@ public class SuppliersService {
 
     public void createSupplier(SupplierDto supplierDto) {
         Suppliers supplier = getSupplierPojoFromDto(supplierDto);
-        suppliersDao.insert(supplier);
+        suppliersRepository.insert(supplier);
     }
 
     public Suppliers getOne(UUID entityId) throws NotFoundException {
@@ -51,7 +48,6 @@ public class SuppliersService {
             String search
     ) {
         SortField<?> sortField = switch (suppliersSortEnum) {
-            case ID -> SUPPLIERS.ID.sort(sortOrder);
             case NAME -> SUPPLIERS.NAME.sort(sortOrder);
             case ADDRESS -> SUPPLIERS.ADDRESS.sort(sortOrder);
             case PHONE -> SUPPLIERS.PHONE.sort(sortOrder);
@@ -89,6 +85,8 @@ public class SuppliersService {
 
     protected Suppliers getSupplierPojoFromDto(SupplierDto supplierDto) {
         Suppliers supplierPojo = new Suppliers();
+        supplierPojo.setId(null);
+        supplierPojo.setEntityId(null);
         supplierPojo.setName(supplierDto.getName());
         supplierPojo.setAddress(supplierDto.getAddress());
         supplierPojo.setPhone(supplierDto.getPhone());
@@ -115,7 +113,7 @@ public class SuppliersService {
         if (Objects.isNull(supplier.getPhone())) {
             supplier.setPhone(actual.getPhone());
         }
-        suppliersDao.insert(supplier);
+        suppliersRepository.insert(supplier);
         return supplier;
     }
 

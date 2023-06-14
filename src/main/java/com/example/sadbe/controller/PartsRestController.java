@@ -32,7 +32,7 @@ public class PartsRestController {
 
     @GetMapping
     public ResponseList<Parts> list(
-            @RequestParam(value = "sortBy", defaultValue = "ENTITY_ID")PartsSortEnum partsSortEnum,
+            @RequestParam(value = "sortBy", defaultValue = "NAME")PartsSortEnum partsSortEnum,
             @RequestParam(value = "sortOrder", defaultValue = "ASC") SortOrder sortOrder,
             @RequestParam(value = "page", defaultValue = "1")Integer page,
             @RequestParam(value = "pageSize", defaultValue = "5")Integer pageSize,

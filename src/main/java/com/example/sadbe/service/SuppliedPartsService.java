@@ -36,7 +36,7 @@ public class SuppliedPartsService {
     public void createSuppliedPart(SuppliedPartDto suppliedPartDto) {
         validate(suppliedPartDto);
         SuppliedParts supPart = getSupPartPojoFromDto(suppliedPartDto);
-        suppliedPartsDao.insert(supPart);
+        suppliedPartsRepository.insert(supPart);
     }
 
     public SuppliedParts getOne(UUID entityId) throws NotFoundException {
@@ -52,11 +52,8 @@ public class SuppliedPartsService {
             String search
     ) {
         SortField<?> sortField = switch (suppliedPartsSortEnum) {
-            case ENTITY_ID -> SUPPLIED_PARTS.ENTITY_ID.sort(sortOrder);
-            case PART -> SUPPLIED_PARTS.PART.sort(sortOrder);
             case DATE -> SUPPLIED_PARTS.DATE.sort(sortOrder);
             case COST -> SUPPLIED_PARTS.COST.sort(sortOrder);
-            case SUPPLIER -> SUPPLIED_PARTS.SUPPLIER.sort(sortOrder);
         };
 
         Condition condition = SUPPLIED_PARTS.DATETIME_OF_DELETE.isNull();
@@ -127,7 +124,7 @@ public class SuppliedPartsService {
         if (Objects.isNull(suppliedPart.getSupplier())) {
             suppliedPart.setSupplier(actual.getSupplier());
         }
-        suppliedPartsDao.insert(suppliedPart);
+        suppliedPartsRepository.insert(suppliedPart);
         return suppliedPart;
     }
 
