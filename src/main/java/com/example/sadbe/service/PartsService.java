@@ -101,6 +101,7 @@ public class PartsService {
         actual.setDatetimeOfDelete(LocalDateTime.now());
         partsDao.update(actual);
 
+        part.setEntityId(actual.getEntityId());
         part.setDatetimeOfCreation(actual.getDatetimeOfCreation());
         if (Objects.isNull(part.getName())) {
             part.setName(actual.getName());

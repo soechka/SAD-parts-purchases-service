@@ -43,7 +43,7 @@ public class SuppliesService {
 
     private void validate(SupplyDto supplyDto) {
         StringBuilder stringBuilder = new StringBuilder();
-        if (!suppliedPartsRepository.exists(SUPPLIED_PARTS.ENTITY_ID.eq(supplyDto.getSupplied_parts()))) {
+        if (!suppliedPartsRepository.exists(SUPPLIED_PARTS.ENTITY_ID.eq(supplyDto.getSuppliedParts()))) {
             stringBuilder.append("Supplying part does not exist\n");
         }
         if (!stringBuilder.isEmpty()) {
@@ -55,7 +55,7 @@ public class SuppliesService {
         Supplies supply = new Supplies();
         supply.setAmount(supplyDto.getAmount());
         supply.setDate(supplyDto.getDate());
-        supply.setSuppliedParts(supplyDto.getSupplied_parts());
+        supply.setSuppliedParts(supplyDto.getSuppliedParts());
         return supply;
     }
 
@@ -114,6 +114,7 @@ public class SuppliesService {
         actual.setDatetimeOfDelete(LocalDateTime.now());
         suppliesDao.update(actual);
 
+        supply.setEntityId(actual.getEntityId());
         supply.setDatetimeOfCreation(actual.getDatetimeOfDelete());
         if (Objects.isNull(supply.getAmount())) {
             supply.setAmount(actual.getAmount());

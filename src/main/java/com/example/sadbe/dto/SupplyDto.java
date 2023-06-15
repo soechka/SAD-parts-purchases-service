@@ -10,6 +10,6 @@ public class SupplyDto {
 
     private Long amount;
     private LocalDateTime date;
-    private UUID supplied_parts;
+    private UUID suppliedParts;
 
 }

@@ -103,6 +103,7 @@ public class SuppliersService {
         actual.setDatetimeOfDelete(LocalDateTime.now());
         suppliersDao.update(actual);
 
+        supplier.setEntityId(actual.getEntityId());
         supplier.setDatetimeOfCreation(actual.getDatetimeOfCreation());
         if (Objects.isNull(supplier.getName())) {
             supplier.setName(actual.getName());

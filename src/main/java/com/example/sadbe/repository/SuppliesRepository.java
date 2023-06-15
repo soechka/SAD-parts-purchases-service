@@ -72,7 +72,7 @@ public class SuppliesRepository {
 
     public void insert(Supplies supply) {
         dslContext
-                .insertInto(SUPPLIERS)
+                .insertInto(SUPPLIES)
                 .columns(
                         SUPPLIES.AMOUNT,
                         SUPPLIES.DATE,
