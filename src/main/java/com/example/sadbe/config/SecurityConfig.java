@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 // Разрешаем изменение данных только админам
-                .antMatchers(HttpMethod.POST, "/teacher").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/users").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
