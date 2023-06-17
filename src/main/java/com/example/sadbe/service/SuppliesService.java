@@ -78,7 +78,7 @@ public class SuppliesService {
         Condition condition = SUPPLIES.DATETIME_OF_DELETE.isNull();
         if (Objects.nonNull(amount)) {
             condition =
-                    condition.and(SUPPLIES.AMOUNT.containsIgnoreCase(amount));
+                    condition.and(SUPPLIES.AMOUNT.eq(amount));
         }
         if (Objects.nonNull(date)) {
             condition =
@@ -90,7 +90,7 @@ public class SuppliesService {
         }
         if (Objects.nonNull(search)) {
             condition =
-                    condition.and(SUPPLIES.AMOUNT.containsIgnoreCase(Long.valueOf(search)))
+                    condition.and(SUPPLIES.AMOUNT.eq(Long.valueOf(search)))
                             .or(SUPPLIES.DATE.containsIgnoreCase(LocalDateTime.parse(search)))
                             .or(SUPPLIES.SUPPLIED_PARTS.containsIgnoreCase(UUID.fromString(search)));
         }

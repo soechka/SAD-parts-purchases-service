@@ -8,6 +8,7 @@ import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.jooq.impl.DSL.selectFrom;
 
@@ -47,5 +48,13 @@ public class UsersRepository {
                 .from(Tables.USERS)
                 .where(condition)
                 .fetchOneInto(Long.class);
+    }
+
+    public void changeRole(UUID id) {
+        Boolean prevRole = dslContext.select(Tables.USERS.IS_ADMIN).from(Tables.USERS).where(Tables.USERS.ID.eq(id)).fetchOneInto(Boolean.class);
+        dslContext
+                .update(Tables.USERS)
+                .set(Tables.USERS.IS_ADMIN, Boolean.FALSE.equals(prevRole))
+                .where(Tables.USERS.ID.eq(id));
     }
 }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -61,4 +62,11 @@ public class UsersService {
         }
     }
 
+    public void delete(UUID id) {
+        usersDao.deleteById(id);
+    }
+
+    public void changeRole(UUID id) {
+        usersRepository.changeRole(id);
+    }
 }

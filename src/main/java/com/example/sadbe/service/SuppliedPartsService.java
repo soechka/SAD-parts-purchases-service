@@ -59,14 +59,14 @@ public class SuppliedPartsService {
         Condition condition = SUPPLIED_PARTS.DATETIME_OF_DELETE.isNull();
         if (Objects.nonNull(date)) {
             condition =
-                    condition.and(SUPPLIED_PARTS.DATE.containsIgnoreCase(date));
+                    condition.and(SUPPLIED_PARTS.DATE.eq(date));
         }
         if (Objects.nonNull(search)) {
             condition =
                     condition.and(SUPPLIED_PARTS.ENTITY_ID.containsIgnoreCase(UUID.fromString(search))
                             .or(SUPPLIED_PARTS.PART.containsIgnoreCase(UUID.fromString(search)))
-                            .or(SUPPLIED_PARTS.DATE.containsIgnoreCase(LocalDateTime.parse(search)))
-                            .or(SUPPLIED_PARTS.COST.containsIgnoreCase(Long.valueOf(search)))
+                            .or(SUPPLIED_PARTS.DATE.toString().contains(search))
+                            .or(SUPPLIED_PARTS.COST.eq(Long.valueOf(search)))
                             .or(SUPPLIED_PARTS.SUPPLIER.containsIgnoreCase(UUID.fromString(search))));
         }
 

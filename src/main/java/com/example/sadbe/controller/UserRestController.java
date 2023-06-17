@@ -7,6 +7,8 @@ import com.example.sadbe.tables.pojos.Users;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/users")
 @AllArgsConstructor
@@ -32,4 +34,11 @@ public class UserRestController {
         usersService.update(userDto);
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable UUID id) {
+        usersService.delete(id);
+    }
+
+    @PutMapping("/{id}")
+    public void changeRole(@PathVariable UUID id) { usersService.changeRole(id); }
 }
