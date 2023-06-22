@@ -3,6 +3,7 @@ package com.example.sadbe.config;
 import com.example.sadbe.repository.UsersRepository;
 import com.example.sadbe.tables.pojos.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.audit.InMemoryAuditEventRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -30,6 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public InMemoryAuditEventRepository repository(){
+        return new InMemoryAuditEventRepository();
     }
 
     @Override
@@ -61,11 +67,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 }).successHandler((request, response, authentication) -> {
                     String login = authentication.getName();
+                    System.out.println("[!] User " + login + "successfully authenticated");
                     Users user = usersRepository.getActual(login);
                     response.setContentType("application/json");
                     response.getWriter().write(String.format("{\"isAdmin\": \"%s\"}", user.getIsAdmin()));
                     response.setStatus(HttpServletResponse.SC_OK);
-                })
+                }).failureHandler(((request, response, exception) -> {
+                    System.out.println("[!] " + exception.getMessage());
+                }))
                 .permitAll()
                 .and()
                 .logout()
